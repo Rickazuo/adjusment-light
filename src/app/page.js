@@ -8,14 +8,21 @@ import bright from "../../public/bright.svg";
 import opacity from "../../public/opacity.svg";
 import BrighterSlider from "./components/brightSlidebar/brightSlidebar";
 import OpacitySlider from "./components/opacitySlidebar/opacitySlidebar";
+import Circle from "./components/circle/circle";
 
 export default function Home() {
-    const [hue, setHue] = useState(0);
+    const [hue, setHue] = useState(265);
+    const [brightness, setBrightness] = useState(100);
+    const [saturation, setSaturation] = useState(50);
+
+    console.log(hue);
 
     return (
         <main className={styles.main}>
             <span className={styles.title}>Ajustes de Iluminação</span>
             <div className={styles.slidersContainer}>
+                <Circle hue={hue} light={brightness} saturation={saturation} />
+
                 <div className={styles.sliders}>
                     <Image
                         src={color}
@@ -32,7 +39,7 @@ export default function Home() {
                         width={24}
                         height={24}
                     />
-                    <BrighterSlider />
+                    <BrighterSlider setBrightness={setBrightness} />
                 </div>
                 <div className={styles.sliders}>
                     <Image
@@ -41,7 +48,7 @@ export default function Home() {
                         width={24}
                         height={24}
                     />
-                    <OpacitySlider />
+                    <OpacitySlider setSaturation={setSaturation} />
                 </div>
             </div>
         </main>

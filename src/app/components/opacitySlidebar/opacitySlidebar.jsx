@@ -1,13 +1,8 @@
-"use client";
-import React, { useState } from "react";
-import Circle from "../../data";
 import styles from "./opacitySlidebar.module.css";
 
-export default function OpacitySlider() {
-    const [opacity, setOpacity] = useState("#00000");
-
+export default function OpacitySlider({ setSaturation }) {
     const handleSliderChange = (event) => {
-        setOpacity(event.target.value);
+        setSaturation(event.target.value);
     };
 
     return (
@@ -16,11 +11,10 @@ export default function OpacitySlider() {
                 className={styles.slider}
                 type="range"
                 min={0}
-                max={255}
+                max={100}
                 onChange={handleSliderChange}
-                value={opacity}
+                defaultValue={50}
             />
-            {/*<Circle opacity={opacity} />*/}
         </div>
     );
 }

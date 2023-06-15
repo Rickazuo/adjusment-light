@@ -1,15 +1,10 @@
-import { useState } from "react";
-import Circle from "../../data";
 import styles from "./colorSliderbar.module.css";
 
 export default function ColorSlider({ hue, setHue }) {
     const handleSliderChange = (event) => {
         const { value } = event.target;
-        const hue = (value * 360) / 255;
-        setHue(parseInt(hue));
+        setHue(parseInt(value));
     };
-
-    console.log("hue", hue);
 
     return (
         <div>
@@ -17,11 +12,10 @@ export default function ColorSlider({ hue, setHue }) {
                 className={styles.slider}
                 type="range"
                 min={0}
-                max={255}
-                defaultValue={0}
+                max={360}
+                defaultValue={265}
                 onChange={handleSliderChange}
             />
-            <Circle color={hue} />
         </div>
     );
 }

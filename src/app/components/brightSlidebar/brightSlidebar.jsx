@@ -1,13 +1,8 @@
-"use client";
-import React, { useState } from "react";
-import Circle from "../../data";
 import styles from "./brightSlidebar.module.css";
 
-export default function BrighterSlider() {
-    const [bright, setBright] = useState("#00000");
-
+export default function BrighterSlider({ setBrightness }) {
     const handleSliderChange = (event) => {
-        setBright(event.target.value);
+        setBrightness(event.target.value);
     };
 
     return (
@@ -16,11 +11,10 @@ export default function BrighterSlider() {
                 className={styles.slider}
                 type="range"
                 min={0}
-                max={255}
+                max={100}
+                defaultValue={100}
                 onChange={handleSliderChange}
-                value={bright}
             />
-            {/*<Circle bright={bright} />*/}
         </div>
     );
 }
