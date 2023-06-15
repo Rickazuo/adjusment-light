@@ -1,26 +1,21 @@
-"use client";
-import React, { useState } from "react";
-import Circle from "../../data";
 import styles from "./colorSliderbar.module.css";
 
-export default function ColorSlider() {
-  const [color, setColor] = useState("#00000");
+export default function ColorSlider({ hue, setHue }) {
+    const handleSliderChange = (event) => {
+        const { value } = event.target;
+        setHue(parseInt(value));
+    };
 
-  const handleSliderChange = (event) => {
-    setColor(event.target.value);
-  };
-
-  return (
-    <div>
-      <input
-        className={styles.slider}
-        type="range"
-        min={0}
-        max={255}
-        onChange={handleSliderChange}
-        value={color}
-      />
-      <Circle color={color} />
-    </div>
-  );
+    return (
+        <div>
+            <input
+                className={styles.slider}
+                type="range"
+                min={0}
+                max={360}
+                defaultValue={265}
+                onChange={handleSliderChange}
+            />
+        </div>
+    );
 }
