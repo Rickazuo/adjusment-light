@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "../../page.module.css";
 
 const Circle = ({ hue, light, saturation }) => {
@@ -22,20 +22,22 @@ const Circle = ({ hue, light, saturation }) => {
     }
   `;
 
-  // Create a dynamic style tag with the animation styles
-  const styleTag = document.createElement("style");
-  styleTag.innerText = animationStyles;
-  document.head.appendChild(styleTag);
+  useEffect(() => {
+    const styleTag = document.createElement("style");
+    styleTag.innerText = animationStyles;
+    document.head.appendChild(styleTag);
 
-  return (
-    <div
-      className={styles.circle}
-      style={{
-        backgroundColor: `hsl(${hue}, ${light}%, ${saturation}%)`,
-        animation: "shadowPulse 6s infinite alternate", // Apply the keyframes animation here
-      }}
-    ></div>
-  );
+    return () => {
+      document.head.removeChild(styleTag);
+    };
+  }, [animationStyles]);
+
+  const circleStyle = {
+    backgroundColor: `hsl(${hue}, ${light}%, ${saturation}%)`,
+    animation: "shadowPulse 6s infinite alternate",
+  };
+
+  return <div className={styles.circle} style={circleStyle}></div>;
 };
 
 export default Circle;
